@@ -14,6 +14,10 @@ public class Team {
 		this.TID = TID;
 		this.MID = MID;
 	}
+	
+	public void addManager(int mid) {
+		this.MID = mid;
+	}
 
 	public void RemoveManager() {
 		this.MID = -1;

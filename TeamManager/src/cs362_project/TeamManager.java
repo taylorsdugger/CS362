@@ -3,10 +3,10 @@ package cs362_project;
 public class TeamManager {
 	DatabaseSupport d = new DatabaseSupport();
 	
-	public boolean createTeam(String name, String tid, String mid) {
+	public boolean createTeam(int tid, int mid) {
 		try {
 
-			Team t = new Team(String name, String tid, String mid);
+			Team t = new Team(int tid, int mid);
 
 			d.putTeam(t);
 
@@ -17,7 +17,7 @@ public class TeamManager {
 		return true;
 	}
 	
-	public boolean deleteTeam(String tid) {
+	public boolean deleteTeam(int tid) {
 		try {
 
 			d.deleteTeam(tid);
@@ -34,7 +34,7 @@ public class TeamManager {
 
 			Team t = d.getTeam(tid);
 
-			t.addUpdateContactInfoManager();
+			t.addManager(mid);
 
 			d.putTeam(t);
 
