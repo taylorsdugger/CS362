@@ -7,7 +7,7 @@ import java.util.List;
 public class TeamManager {
 	DatabaseSupport d = new DatabaseSupport();
 	
-	public boolean createTeam(int tid, int mid) {
+	public boolean createTeam(int tid) {
 		try {
 
 			Team t = new Team(tid);
@@ -138,11 +138,12 @@ public class TeamManager {
 		}
 		return true;
 	}
-	public List<Member> listMember(int tID)
+	public List<Member> listMember(int tid)
 	{	
 		try
 		{
-			return d.getMembers(tID);
+			return d.getMembers(tid);
+			
 		}catch(Exception e)
 		{
 			return null;
