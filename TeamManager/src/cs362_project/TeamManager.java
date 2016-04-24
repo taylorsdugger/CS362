@@ -10,7 +10,7 @@ public class TeamManager {
 	public boolean createTeam(int tid, int mid) {
 		try {
 
-			Team t = new Team( tid,  mid);
+			Team t = new Team(tid);
 
 			d.putTeam(t);
 
@@ -18,6 +18,36 @@ public class TeamManager {
 			return false;
 		}
 		
+		return true;
+	}
+	
+	public boolean createEmployee(String name, int mid){
+		try{
+			
+			Member m = new Member();
+			m.setName(name);
+			m.setMID(mid);
+			
+			d.addMember(m);
+			
+		}catch (Exception e){
+			return false;
+		}
+		return true;
+	}
+	
+	public boolean createManager(String name, int mid){
+		try{
+			
+			Member m = new Member();
+			m.setName(name);
+			m.setMID(mid);
+			
+			d.putManager(m);
+			
+		}catch(Exception e){
+			return false;
+		}
 		return true;
 	}
 	
@@ -49,7 +79,7 @@ public class TeamManager {
 		return true;
 	}
 
-	public boolean RemoveManager(int mid, int tid) {
+	public boolean removeManager(int mid, int tid) {
 		try {
 
 			Team t = d.getTeam(tid);
@@ -65,11 +95,14 @@ public class TeamManager {
 		return true;
 	}
 
-	public boolean addUpdateContactInfo(int mid, int tid, String phone, String email) {
+	public boolean updateContactInfo(int mid, int tid, String phone, String email) {
 		try {
-			Team t = d.getTeam(tid);
+			Member m = d.getMember(mid);
 			
-			t.updateContactInfo(mid, phone, email);
+			m.setPhone(phone);
+			m.setEmail(email);
+			
+			d.putMemberContactInfo(m);
 			
 		} catch (Exception e) {
 			return false;
@@ -82,8 +115,9 @@ public class TeamManager {
 	{
 		try
 		{
-			Member m=new Member(MiD,TiD,name);
+			Member m = new Member(MiD,TiD,name);
 			d.putMemberIntoTeam(m);	
+			
 		}catch(Exception e)
 		{
 			return false;

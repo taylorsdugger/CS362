@@ -2,8 +2,8 @@ package cs362_project;
 
 public class Member {
 	
-	private int MID;
-	private int TID;
+	private int MID = -1;
+	private int TID = -1;
 	private String name = "";
 	private String phone = "";
 	private String email = "";

@@ -10,6 +10,10 @@ public class Team {
 		MID = -1;
 	}
 
+	public Team (int TID){
+		this.TID = TID;
+	}
+	
 	public Team(int TID, int MID) {
 		this.TID = TID;
 		this.MID = MID;
@@ -37,22 +41,5 @@ public class Team {
 
 	public void setMID(int MID) {
 		this.MID = MID;
-	}
-
-	public boolean updateContactInfo(int mid2, String phone, String email) {
-		try {
-			DatabaseSupport d = new DatabaseSupport();
-
-			Member m = d.getMember(mid2);
-			m.setPhone(phone);
-			m.setEmail(email);
-			
-			d.putMemberContactInfo(m);
-			
-			return true;
-
-		} catch (Exception e) {
-			return false;
-		}
 	}
 }
