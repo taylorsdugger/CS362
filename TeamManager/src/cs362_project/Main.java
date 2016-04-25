@@ -1,5 +1,7 @@
 package cs362_project;
 
+import java.util.Scanner;
+
 public class Main {
 	
 	TeamManager tm = new TeamManager();
@@ -68,7 +70,7 @@ public class Main {
 	  	} else if(temp.equalsIgnoreCase("assignManager")) {
 	  		try {
 	  			//Get Parameter
-	  			System.out.print("\Manager ID: ");
+	  			System.out.print("\nManager ID: ");
 	  			int mid = s.nextInt();
 	  			System.out.print("\nTeam ID: ");
 	  			int tid = s.nextInt();
@@ -95,7 +97,7 @@ public class Main {
 	  	} else if(temp.equalsIgnoreCase("removeManager")) {
 	  		try {
 	  			//Get Parameter
-	  			System.out.print("\Manager ID: ");
+	  			System.out.print("\nManager ID: ");
 	  			int mid = s.nextInt();
 	  			System.out.print("\nTeam ID: ");
 	  			int tid = s.nextInt();
@@ -122,7 +124,7 @@ public class Main {
 	  	} else if(temp.equalsIgnoreCase("addMember")) {
 	  		try {
 	  			//Get Parameter
-	  			System.out.print("\Member ID: ");
+	  			System.out.print("\nMember ID: ");
 	  			int mid = s.nextInt();
 	  			System.out.print("\nTeam ID: ");
 	  			int tid = s.nextInt();
@@ -149,7 +151,7 @@ public class Main {
 	  	} else if(temp.equalsIgnoreCase("removeMember")) {
 	  		try {
 	  			//Get Parameter
-	  			System.out.print("\Member ID: ");
+	  			System.out.print("\nMember ID: ");
 	  			int mid = s.nextInt();
 	  			System.out.print("\nTeam ID: ");
 	  			int tid = s.nextInt();
@@ -204,9 +206,9 @@ public class Main {
 	  			//Get Parameter
 	  			System.out.print("\nMember ID: ");
 	  			int mid = s.nextInt();
-	  			System.out.print("\Phone: ");
+	  			System.out.print("\nPhone: ");
 	  			String phone = s.nextLine();
-	  			System.out.print("\Email: ");
+	  			System.out.print("\nEmail: ");
 	  			String email = s.nextLine();
 	  			//TODO
 	  		} catch (Exception e) {
@@ -234,9 +236,9 @@ public class Main {
 	  			//Get Parameter
 	  			System.out.print("\nMember ID: ");
 	  			int mid = s.nextInt();
-	  			System.out.print("\Phone: ");
+	  			System.out.print("\nPhone: ");
 	  			String phone = s.nextLine();
-	  			System.out.print("\Email: ");
+	  			System.out.print("\nEmail: ");
 	  			String email = s.nextLine();
 	  		} catch (Exception e) {
 	  			System.out.println("Error in Parsing parameters");

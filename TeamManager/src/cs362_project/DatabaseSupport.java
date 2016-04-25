@@ -243,6 +243,59 @@ public class DatabaseSupport {
 			close();
 		}
 	}
+	
+	public void endTask(int taskid)throws Exception{
+		try{
+			Class.forName("com.mysql.jdbc.Driver");
+			connect = DriverManager.getConnection("jdbc:mysql://localhost/TEAMDB?" + "user=test&password=test1");
+			
+			preparedStatement = connect.prepareStatement("UPDATE TEAMDB.TASKS SET completed = ? WHERE taskID = ?");
+			preparedStatement.setInt(1, 1);
+			preparedStatement.setInt(2, taskid);
+			
+		}catch (Exception e){
+			throw e;
+		}finally{
+			close();
+		}
+		
+	}
+	
+	public void assignTask(int taskid, int mid)throws Exception{
+		try{
+			Class.forName("com.mysql.jdbc.Driver");
+			connect = DriverManager.getConnection("jdbc:mysql://localhost/TEAMDB?" + "user=test&password=test1");
+			
+			preparedStatement = connect.prepareStatement("UPDATE TEAMDB.TASKS SET mid = ? WHERE taskID = ?");
+			preparedStatement.setInt(1, mid);
+			preparedStatement.setInt(2, taskid);
+			
+		}catch (Exception e){
+			throw e;
+		}finally{
+			close();
+		}
+		
+	}
+	
+	public void createTask(int taskid, String desc, String date)throws Exception{
+		try{
+			Class.forName("com.mysql.jdbc.Driver");
+			connect = DriverManager.getConnection("jdbc:mysql://localhost/TEAMDB?" + "user=test&password=test1");
+			
+			preparedStatement = connect.prepareStatement("INSERT INTO TEAMDB.TASKS VALUES(?, ?, ?, ?)");
+			preparedStatement.setInt(1, taskid);
+			preparedStatement.setString(2, desc);
+			preparedStatement.setString(3, date);
+			
+			
+		}catch (Exception e){
+			throw e;
+		}finally{
+			close();
+		}
+		
+	}
 
 	private void close() {
 		try {
