@@ -4,27 +4,27 @@ import java.util.Scanner;
 
 public class Main {
 	
-	TeamManager tm = new TeamManager();
+	static TeamManager tm = new TeamManager();
 	
 	//Testing
 	  public static void main(String[] args) throws Exception {
 	    while(true){
-	    	takeCommand();
+	    	try{
+	    		takeCommand();
+	    	} catch (Exception e) {
+	    		System.out.println("Error in Parsing");
+	    	}
 	    }
 	  }
 	  
-	  public static void takeCommand() {
+	  public static void takeCommand() throws Exception{
 	  	Scanner s = new Scanner(System.in);
 	  	String temp = s.nextLine();
 	  	
 	  	if(temp.equalsIgnoreCase("createTeam")) {
-	  		try {
-	  			//Get Parameter
-	  			System.out.print("\nTeam ID: ");
-	  			int id = s.nextInt();
-	  		} catch (Exception e) {
-	  			System.out.println("Error in Parsing parameters");
-	  		}
+	  		//Get Parameter
+	  		System.out.print("\nTeam ID: ");
+	  		int id = s.nextInt();
 	  		
 	  		System.out.println();
 	  		
@@ -43,13 +43,9 @@ public class Main {
 	  		}
 	  		
 	  	} else if(temp.equalsIgnoreCase("deleteTeam")) {
-	  		try {
-	  			//Get Parameter
-	  			System.out.print("\nTeam ID: ");
-	  			int id = s.nextInt();
-	  		} catch (Exception e) {
-	  			System.out.println("Error in Parsing parameters");
-	  		}
+	  		//Get Parameter
+	  		System.out.print("\nTeam ID: ");
+	  		int id = s.nextInt();
 	  		
 	  		System.out.println();
 	  		
@@ -68,6 +64,7 @@ public class Main {
 	  		}
 	  		
 	  	} else if(temp.equalsIgnoreCase("assignManager")) {
+<<<<<<< HEAD
 	  		try {
 	  			//Get Parameter
 	  			System.out.print("\nManager ID: ");
@@ -77,6 +74,13 @@ public class Main {
 	  		} catch (Exception e) {
 	  			System.out.println("Error in Parsing parameters");
 	  		}
+=======
+	  		//Get Parameter
+	  		System.out.print("\Manager ID: ");
+	  		int mid = s.nextInt();
+	  		System.out.print("\nTeam ID: ");
+	  		int tid = s.nextInt();
+>>>>>>> 703ddab8500a47165c28068c9430a1f5088e16f9
 	  		
 	  		System.out.println();
 	  		
@@ -95,6 +99,7 @@ public class Main {
 	  		}
 	  		
 	  	} else if(temp.equalsIgnoreCase("removeManager")) {
+<<<<<<< HEAD
 	  		try {
 	  			//Get Parameter
 	  			System.out.print("\nManager ID: ");
@@ -104,6 +109,13 @@ public class Main {
 	  		} catch (Exception e) {
 	  			System.out.println("Error in Parsing parameters");
 	  		}
+=======
+	  		//Get Parameter
+	  		System.out.print("\Manager ID: ");
+	  		int mid = s.nextInt();
+	  		System.out.print("\nTeam ID: ");
+	  		int tid = s.nextInt();
+>>>>>>> 703ddab8500a47165c28068c9430a1f5088e16f9
 	  		
 	  		System.out.println();
 	  		
@@ -122,6 +134,7 @@ public class Main {
 	  		}
 	  		
 	  	} else if(temp.equalsIgnoreCase("addMember")) {
+<<<<<<< HEAD
 	  		try {
 	  			//Get Parameter
 	  			System.out.print("\nMember ID: ");
@@ -131,6 +144,13 @@ public class Main {
 	  		} catch (Exception e) {
 	  			System.out.println("Error in Parsing parameters");
 	  		}
+=======
+	  		//Get Parameter
+	  		System.out.print("\Member ID: ");
+	  		int mid = s.nextInt();
+	  		System.out.print("\nTeam ID: ");
+	  		int tid = s.nextInt();
+>>>>>>> 703ddab8500a47165c28068c9430a1f5088e16f9
 	  		
 	  		System.out.println();
 	  		
@@ -149,6 +169,7 @@ public class Main {
 	  		}
 	  		
 	  	} else if(temp.equalsIgnoreCase("removeMember")) {
+<<<<<<< HEAD
 	  		try {
 	  			//Get Parameter
 	  			System.out.print("\nMember ID: ");
@@ -159,6 +180,14 @@ public class Main {
 	  			System.out.println("Error in Parsing parameters");
 	  		}
 	  		
+=======
+  			//Get Parameter
+  			System.out.print("\Member ID: ");
+  			int mid = s.nextInt();
+  			System.out.print("\nTeam ID: ");
+  			int tid = s.nextInt();
+  		
+>>>>>>> 703ddab8500a47165c28068c9430a1f5088e16f9
 	  		System.out.println();
 	  		
 	  		//Try Command
@@ -176,14 +205,10 @@ public class Main {
 	  		}
 	  		
 	  	} else if(temp.equalsIgnoreCase("listMembers")) {
-	  		try {
-	  			//Get Parameter
-	  			System.out.print("\nTeam ID: ");
-	  			int tid = s.nextInt();
-	  		} catch (Exception e) {
-	  			System.out.println("Error in Parsing parameters");
-	  		}
-	  		
+	  		//Get Parameter
+	  		System.out.print("\nTeam ID: ");
+	  		int tid = s.nextInt();
+	  			
 	  		System.out.println();
 	  		
 	  		//Try Command
@@ -202,6 +227,7 @@ public class Main {
 	  		}
 	  		
 	  	} else if(temp.equalsIgnoreCase("addContact")) {
+<<<<<<< HEAD
 	  		try {
 	  			//Get Parameter
 	  			System.out.print("\nMember ID: ");
@@ -214,6 +240,15 @@ public class Main {
 	  		} catch (Exception e) {
 	  			System.out.println("Error in Parsing parameters");
 	  		}
+=======
+	  		//Get Parameter
+	  		System.out.print("\nMember ID: ");
+	  		int mid = s.nextInt();
+	  		System.out.print("\Phone: ");
+	  		String phone = s.nextLine();
+	  		System.out.print("\Email: ");
+	  		String email = s.nextLine();
+>>>>>>> 703ddab8500a47165c28068c9430a1f5088e16f9
 	  		
 	  		System.out.println();
 	  		
@@ -232,7 +267,6 @@ public class Main {
 	  		}
 	  		
 	  	} else if(temp.equalsIgnoreCase("updateContact")) {
-	  		try {
 	  			//Get Parameter
 	  			System.out.print("\nMember ID: ");
 	  			int mid = s.nextInt();
@@ -240,9 +274,6 @@ public class Main {
 	  			String phone = s.nextLine();
 	  			System.out.print("\nEmail: ");
 	  			String email = s.nextLine();
-	  		} catch (Exception e) {
-	  			System.out.println("Error in Parsing parameters");
-	  		}
 	  		
 	  		System.out.println();
 	  		
@@ -261,15 +292,11 @@ public class Main {
 	  		}
 	  		
 	  	} else if(temp.equalsIgnoreCase("createEmployee")) {
-	  		try {
 	  			//Get Parameter
 	  			System.out.print("\nEmployee Name: ");
 	  			String name = s.nextLine();
 	  			System.out.print("\nEmployee ID: ");
 	  			int mid = s.nextInt();
-	  		} catch (Exception e) {
-	  			System.out.println("Error in Parsing parameters");
-	  		}
 	  		
 	  		System.out.println();
 	  		
@@ -288,15 +315,11 @@ public class Main {
 	  		}
 	  		
 	  	} else if(temp.equalsIgnoreCase("createManager")) {
-	  		try {
 	  			//Get Parameter
 	  			System.out.print("\nEmployee Name: ");
 	  			String name = s.nextLine();
 	  			System.out.print("\nEmployee ID: ");
 	  			int mid = s.nextInt();
-	  		} catch (Exception e) {
-	  			System.out.println("Error in Parsing parameters");
-	  		}
 	  		
 	  		System.out.println();
 	  		
@@ -315,7 +338,6 @@ public class Main {
 	  		}
 	  		
 	  	} else if(temp.equalsIgnoreCase("createTask")) {
-	  		try {
 	  			//Get Parameter
 	  			System.out.print("\nTask ID: ");
 	  			int tid = s.nextInt();
@@ -323,9 +345,6 @@ public class Main {
 	  			String desc = s.nextLine();
 	  			System.out.print("Due Date: ");
 	  			String date = s.nextLine();
-	  		} catch (Exception e) {
-	  			System.out.println("Error in Parsing parameters");
-	  		}
 	  		
 	  		System.out.println();
 	  		
@@ -344,15 +363,11 @@ public class Main {
 	  		}
 	  		
 	  	} else if(temp.equalsIgnoreCase("assignTask")) {
-	  		try {
 	  			//Get Parameter
 	  			System.out.print("\nTask ID: ");
 	  			int tid = s.nextInt();
 	  			System.out.print("\nMember ID: ");
 	  			int mid = s.nextInt();
-	  		} catch (Exception e) {
-	  			System.out.println("Error in Parsing parameters");
-	  		}
 	  		
 	  		System.out.println();
 	  		
@@ -371,13 +386,9 @@ public class Main {
 	  		}
 	  		
 	  	} else if(temp.equalsIgnoreCase("endTask")) {
-	  		try {
 	  			//Get Parameter
 	  			System.out.print("\nTask ID: ");
 	  			int tid = s.nextInt();
-	  		} catch (Exception e) {
-	  			System.out.println("Error in Parsing parameters");
-	  		}
 	  		
 	  		System.out.println();
 	  		
@@ -396,13 +407,9 @@ public class Main {
 	  		}
 	  		
 	  	} else if(temp.equalsIgnoreCase("checkTaskOfMember")) {
-	  		try {
 	  			//Get Parameter
 	  			System.out.print("\nMember ID: ");
 	  			int mid = s.nextInt();
-	  		} catch (Exception e) {
-	  			System.out.println("Error in Parsing parameters");
-	  		}
 	  		
 	  		System.out.println();
 	  		
@@ -422,13 +429,9 @@ public class Main {
 	  		}
 	  		
 	  	} else if(temp.equalsIgnoreCase("checkMembersOnTask")) {
-	  		try {
 	  			//Get Parameter
 	  			System.out.print("\nTask ID: ");
 	  			int tid = s.nextInt();
-	  		} catch (Exception e) {
-	  			System.out.println("Error in Parsing parameters");
-	  		}
 	  		
 	  		System.out.println();
 	  		
