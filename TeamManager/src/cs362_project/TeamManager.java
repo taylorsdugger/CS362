@@ -1,48 +1,16 @@
 package cs362_project;
+
 import cs362_project.*;
-import java.util.List;
+
+import java.util.ArrayList;
 
 public class TeamManager {
 	DatabaseSupport d = new DatabaseSupport();
 
-	public boolean createTeam() {
-
-	}
-
-	public boolean deleteTeam() {
-
-	}
-
-	public boolean createManager() {
-
-	}
-
-	public boolean assignManager() {
-
-	}
-
-	public boolean removeManager() {
-
-	}
-
-	public boolean createEmployee() {
-
-	}
-
-	public boolean assignMember() {
-
-	}
-
-	public boolean removeMember() {
-
-	}
-
-	public
-
-	public boolean createTeam(int tid) {
+	public boolean createTeam(int teamid) {
 		try {
 
-			Team t = new Team(tid);
+			Team t = new Team(teamid);
 
 			d.putTeam(t);
 
@@ -53,27 +21,24 @@ public class TeamManager {
 		return true;
 	}
 
-	public boolean createEmployee(String name, int mid) {
+	public boolean deleteTeam(int teamid) {
 		try {
 
-			Member m = new Member();
-			m.setName(name);
-			m.setMID(mid);
-
-			d.addMember(m);
+			d.deleteTeam(teamid);
 
 		} catch (Exception e) {
 			return false;
 		}
+
 		return true;
 	}
 
-	public boolean createManager(String name, int mid) {
+	public boolean createManager(int managerid, String name) {
 		try {
 
 			Member m = new Member();
 			m.setName(name);
-			m.setMID(mid);
+			m.setMID(managerid);
 
 			d.putManager(m);
 
@@ -83,24 +48,12 @@ public class TeamManager {
 		return true;
 	}
 
-	public boolean deleteTeam(int tid) {
+	public boolean assignManager(int teamid, int managerid) {
 		try {
 
-			d.deleteTeam(tid);
+			Team t = d.getTeam(teamid);
 
-		} catch (Exception e) {
-			return false;
-		}
-
-		return true;
-	}
-
-	public boolean addManager(int mid, int tid) {
-		try {
-
-			Team t = d.getTeam(tid);
-
-			t.addManager(mid);
+			t.addManager(managerid);
 
 			d.putTeam(t);
 
@@ -111,10 +64,10 @@ public class TeamManager {
 		return true;
 	}
 
-	public boolean removeManager(int mid, int tid) {
+	public boolean unassignManager(int teamid, int managerid) {
 		try {
 
-			Team t = d.getTeam(tid);
+			Team t = d.getTeam(teamid);
 
 			t.RemoveManager();
 
@@ -127,9 +80,57 @@ public class TeamManager {
 		return true;
 	}
 
-	public boolean updateContactInfo(int mid, int tid, String phone, String email) {
+	public boolean createEmployee(int employeeid, String name) {
 		try {
-			Member m = d.getMember(mid);
+
+			Member m = new Member();
+			m.setName(name);
+			m.setMID(employeeid);
+
+			d.addMember(m);
+
+		} catch (Exception e) {
+			return false;
+		}
+		return true;
+	}
+
+	public boolean assignEmployee(int teamid, int employeeid) {
+		try {
+			Member m = d.getMember(employeeid);
+			Team t = d.getTeam(teamid);
+			d.putMemberIntoTeam(m);
+
+		} catch (Exception e) {
+			return false;
+
+		}
+		return true;
+	}
+
+	public boolean unassignEmployee(int teamid, int employeeid) {
+		try {
+			d.removeMember(employeeid);
+		} catch (Exception e) {
+			return false;
+
+		}
+		return true;
+	}
+
+	public ArrayList<Member> listMembersOfTeam(int teamid) {
+		try {
+			return d.getMembers(teamid);
+
+		} catch (Exception e) {
+			return null;
+
+		}
+	}
+
+	public boolean addContactForEmployee(int employeeid, String phone, String email) {
+		try {
+			Member m = d.getMember(employeeid);
 
 			m.setPhone(phone);
 			m.setEmail(email);
@@ -143,37 +144,64 @@ public class TeamManager {
 		return true;
 	}
 
-	public boolean addMember(String name, int TiD, int MiD) {
+	public boolean updateContactForEmployee(int employeeid, String phone, String email) {
 		try {
-			Member m = new Member(MiD, TiD, name);
-			d.putMemberIntoTeam(m);
+			Member m = d.getMember(employeeid);
+
+			m.setPhone(phone);
+			m.setEmail(email);
+
+			d.putMemberContactInfo(m);
 
 		} catch (Exception e) {
 			return false;
+		}
 
+		return true;
+	}
+
+	public boolean createTaskForTeam(int teamid, int taskid, String desc, String date) {
+		try {
+			// TODO
+		} catch (Exception e) {
+			return false;
 		}
 		return true;
 	}
 
-	public boolean deleteMember(int mid) {
-
+	public boolean assignTaskToEmployee(int teamid, int taskid, int employeeid) {
 		try {
-			d.removeMember(mid);
+			// TODO
 		} catch (Exception e) {
 			return false;
-
 		}
 		return true;
 	}
 
-	public List<Member> listMember(int tid) {
+	public boolean endTask(int teamid, int taskid) {
 		try {
-			return d.getMembers(tid);
+			// TODO
+		} catch (Exception e) {
+			return false;
+		}
+		return true;
+	}
 
+	public ArrayList<Task> listTasksOfMember(int employeeid) {
+		try {
+			// TODO
 		} catch (Exception e) {
 			return null;
-
 		}
+		return null;
+	}
 
+	public ArrayList<Member> listMembersOnTask(int teamid, int taskid) {
+		try {
+			// TODO
+		} catch (Exception e) {
+			return null;
+		}
+		return null;
 	}
 }

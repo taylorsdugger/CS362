@@ -4,393 +4,218 @@ import java.util.Scanner;
 
 public class Main {
 
-	static TeamManager tm = new TeamManager();
-
 	// Testing
 	public static void main(String[] args) throws Exception {
+		
+		Scanner s = new Scanner(System.in);
+		
 		while (true) {
 			try {
-				takeCommand();
+				doThings(s);
 			} catch (Exception e) {
 				System.out.println("Error in Parsing");
 			}
 		}
 	}
 
-	public static void takeCommand() throws Exception{
-	  	Scanner s = new Scanner(System.in);
-	  	String temp = s.nextLine();
-	  	
-	  	if(temp.equalsIgnoreCase("createTeam")) {
-	  		//Get Parameter
-	  		System.out.print("\nTeam ID: ");
-	  		int id = s.nextInt();
-	  		
-	  		System.out.println();
-	  		
-	  		//Try Command
-	  		try{
-	  			if(tm.createTeam(id)) {
-	  				//Returned True
-	  				System.out.println("Team Created");
-	  			} else {
-	  				//Returned False
-	  				System.out.println("Team failed to Create");
-	  			}
-	  		} catch (Exception e) {
-	  			//Error
-	  			System.out.println("Team Creation Error");
-	  		}
-	  		
-	  	} else if(temp.equalsIgnoreCase("deleteTeam")) {
-	  		//Get Parameter
-	  		System.out.print("\nTeam ID: ");
-	  		int id = s.nextInt();
-	  		
-	  		System.out.println();
-	  		
-	  		//Try Command
-	  		try{
-	  			if(tm.deleteTeam(id)) {
-	  				//Returned True
-	  				System.out.println("Team Deleted");
-	  			} else {
-	  				//Returned False
-	  				System.out.println("Team failed to Delete");
-	  			}
-	  		} catch (Exception e) {
-	  			//Error
-	  			System.out.println("Team Deletion Error");
-	  		}
-	  		
-	  	} else if(temp.equalsIgnoreCase("assignManager")) {
-	  		//Get Parameter
-	  		System.out.print("\Manager ID: ");
-	  		int mid = s.nextInt();
-	  		System.out.print("\nTeam ID: ");
-	  		int tid = s.nextInt();
-	  		
-	  		System.out.println();
-	  		
-	  		//Try Command
-	  		try{
-	  			if(tm.assignManager(mid, tid)) {
-	  				//Returned True
-	  				System.out.println("Manager Assigned to Team");
-	  			} else {
-	  				//Returned False
-	  				System.out.println("Failed to Assign manager");
-	  			}
-	  		} catch (Exception e) {
-	  			//Error
-	  			System.out.println("Error in assigning manager");
-	  		}
-	  		
-	  	} else if(temp.equalsIgnoreCase("removeManager")) {
-	  		//Get Parameter
-	  		System.out.print("\Manager ID: ");
-	  		int mid = s.nextInt();
-	  		System.out.print("\nTeam ID: ");
-	  		int tid = s.nextInt();
-	  		
-	  		System.out.println();
-	  		
-	  		//Try Command
-	  		try{
-	  			if(tm.removeManager(mid, tid)) {
-	  				//Returned True
-	  				System.out.println("Manger removed from Team");
-	  			} else {
-	  				//Returned False
-	  				System.out.println("Failed to remove Manager");
-	  			}
-	  		} catch (Exception e) {
-	  			//Error
-	  			System.out.println("ERROR");
-	  		}
-	  		
-	  	} else if(temp.equalsIgnoreCase("assignMember")) {
-	  		//Get Parameter
-	  		System.out.print("\Member ID: ");
-	  		int mid = s.nextInt();
-	  		System.out.print("\nTeam ID: ");
-	  		int tid = s.nextInt();
-	  		
-	  		System.out.println();
-	  		
-	  		//Try Command
-	  		try{
-	  			if(tm.assignMember(mid, tid)) {
-	  				//Returned True
-	  				System.out.println("Success");
-	  			} else {
-	  				//Returned False
-	  				System.out.println("Failure");
-	  			}
-	  		} catch (Exception e) {
-	  			//Error
-	  			System.out.println("ERROR");
-	  		}
-	  		
-	  	} else if(temp.equalsIgnoreCase("removeMember")) {
-  			//Get Parameter
-  			System.out.print("\Member ID: ");
-  			int mid = s.nextInt();
-  			System.out.print("\nTeam ID: ");
-  			int tid = s.nextInt();
-  			
-	  		System.out.println();
-	  		
-	  		//Try Command
-	  		try{
-	  			if(tm.removeMember(mid, tid)) {
-	  				//Returned True
-	  				System.out.println("Success");
-	  			} else {
-	  				//Returned False
-	  				System.out.println("Failure");
-	  			}
-	  		} catch (Exception e) {
-	  			//Error
-	  			System.out.println("ERROR");
-	  		}
-	  		
-	  	} else if(temp.equalsIgnoreCase("listMembers")) {
-	  		//Get Parameter
-	  		System.out.print("\nTeam ID: ");
-	  		int tid = s.nextInt();
-	  			
-	  		System.out.println();
-	  		
-	  		//Try Command
-	  		try{
-	  			ArrayList<Member> mem = tm.listMembers(tid);
-	  			if(mem) {
-	  				//Returned True
-	  				System.out.println(mem);
-	  			} else {
-	  				//Returned False
-	  				System.out.println("Failure");
-	  			}
-	  		} catch (Exception e) {
-	  			//Error
-	  			System.out.println("ERROR");
-	  		}
-	  		
-	  	} else if(temp.equalsIgnoreCase("addContact")) {
-	  		//Get Parameter
-	  		System.out.print("\nMember ID: ");
-	  		int mid = s.nextInt();
-	  		System.out.print("\Phone: ");
-	  		String phone = s.nextLine();
-	  		System.out.print("\Email: ");
-	  		String email = s.nextLine();
-	  		
-	  		System.out.println();
-	  		
-	  		//Try Command
-	  		try{
-	  			if(tm.addContact(mid, phone, email)) {
-	  				//Returned True
-	  				System.out.println("Success");
-	  			} else {
-	  				//Returned False
-	  				System.out.println("Failure");
-	  			}
-	  		} catch (Exception e) {
-	  			//Error
-	  			System.out.println("ERROR");
-	  		}
-	  		
-	  	} else if(temp.equalsIgnoreCase("updateContact")) {
-	  			//Get Parameter
-	  			System.out.print("\nMember ID: ");
-	  			int mid = s.nextInt();
-	  			System.out.print("\nPhone: ");
-	  			String phone = s.nextLine();
-	  			System.out.print("\nEmail: ");
-	  			String email = s.nextLine();
-	  		
-	  		System.out.println();
-	  		
-	  		//Try Command
-	  		try{
-	  			if(tm.updateContact(mid, /*TODO*/)) {
-	  				//Returned True
-	  				System.out.println("Success");
-	  			} else {
-	  				//Returned False
-	  				System.out.println("Failure");
-	  			}
-	  		} catch (Exception e) {
-	  			//Error
-	  			System.out.println("ERROR");
-	  		}
-	  		
-	  	} else if(temp.equalsIgnoreCase("createEmployee")) {
-	  			//Get Parameter
-	  			System.out.print("\nEmployee Name: ");
-	  			String name = s.nextLine();
-	  			System.out.print("\nEmployee ID: ");
-	  			int mid = s.nextInt();
-	  		
-	  		System.out.println();
-	  		
-	  		//Try Command
-	  		try{
-	  			if(tm.createEmployee(name, mid)) {
-	  				//Returned True
-	  				System.out.println("Success");
-	  			} else {
-	  				//Returned False
-	  				System.out.println("Failure");
-	  			}
-	  		} catch (Exception e) {
-	  			//Error
-	  			System.out.println("ERROR");
-	  		}
-	  		
-	  	} else if(temp.equalsIgnoreCase("createManager")) {
-	  			//Get Parameter
-	  			System.out.print("\nEmployee Name: ");
-	  			String name = s.nextLine();
-	  			System.out.print("\nEmployee ID: ");
-	  			int mid = s.nextInt();
-	  		
-	  		System.out.println();
-	  		
-	  		//Try Command
-	  		try{
-	  			if(tm.addMember(name, mid)) {
-	  				//Returned True
-	  				System.out.println("Success");
-	  			} else {
-	  				//Returned False
-	  				System.out.println("Failure");
-	  			}
-	  		} catch (Exception e) {
-	  			//Error
-	  			System.out.println("ERROR");
-	  		}
-	  		
-	  	} else if(temp.equalsIgnoreCase("createTask")) {
-	  			//Get Parameter
-	  			System.out.print("\nTask ID: ");
-	  			int tid = s.nextInt();
-	  			System.out.print("\nTask Desc: ");
-	  			String desc = s.nextLine();
-	  			System.out.print("Due Date: ");
-	  			String date = s.nextLine();
-	  		
-	  		System.out.println();
-	  		
-	  		//Try Command
-	  		try{
-	  			if(tm.createTask(tid, desc, date)) {
-	  				//Returned True
-	  				System.out.println("Success");
-	  			} else {
-	  				//Returned False
-	  				System.out.println("Failure");
-	  			}
-	  		} catch (Exception e) {
-	  			//Error
-	  			System.out.println("ERROR");
-	  		}
-	  		
-	  	} else if(temp.equalsIgnoreCase("assignTask")) {
-	  			//Get Parameter
-	  			System.out.print("\nTask ID: ");
-	  			int tid = s.nextInt();
-	  			System.out.print("\nMember ID: ");
-	  			int mid = s.nextInt();
-	  		
-	  		System.out.println();
-	  		
-	  		//Try Command
-	  		try{
-	  			if(tm.assignTask(tid, mid)) {
-	  				//Returned True
-	  				System.out.println("Success");
-	  			} else {
-	  				//Returned False
-	  				System.out.println("Failure");
-	  			}
-	  		} catch (Exception e) {
-	  			//Error
-	  			System.out.println("ERROR");
-	  		}
-	  		
-	  	} else if(temp.equalsIgnoreCase("endTask")) {
-	  			//Get Parameter
-	  			System.out.print("\nTask ID: ");
-	  			int tid = s.nextInt();
-	  		
-	  		System.out.println();
-	  		
-	  		//Try Command
-	  		try{
-	  			if(tm.endTask(tid)) {
-	  				//Returned True
-	  				System.out.println("Success");
-	  			} else {
-	  				//Returned False
-	  				System.out.println("Failure");
-	  			}
-	  		} catch (Exception e) {
-	  			//Error
-	  			System.out.println("ERROR");
-	  		}
-	  		
-	  	} else if(temp.equalsIgnoreCase("checkTaskOfMember")) {
-	  			//Get Parameter
-	  			System.out.print("\nMember ID: ");
-	  			int mid = s.nextInt();
-	  		
-	  		System.out.println();
-	  		
-	  		//Try Command
-	  		try{
-	  			ArrayList<Task> tasks = tm.listMembers(tid);
-	  			if(tasks) {
-	  				//Returned True
-	  				System.out.println(tasks);
-	  			} else {
-	  				//Returned False
-	  				System.out.println("Failure");
-	  			}
-	  		} catch (Exception e) {
-	  			//Error
-	  			System.out.println("ERROR");
-	  		}
-	  		
-	  	} else if(temp.equalsIgnoreCase("checkMembersOnTask")) {
-	  			//Get Parameter
-	  			System.out.print("\nTask ID: ");
-	  			int tid = s.nextInt();
-	  		
-	  		System.out.println();
-	  		
-	  		//Try Command
-	  		try{
-	  			ArrayList<Member> mem = tm.checkMembersOnTask(tid);
-	  			if(mem) {
-	  				//Returned True
-	  				System.out.println(mem);
-	  			} else {
-	  				//Returned False
-	  				System.out.println("Failure");
-	  			}
-	  		} catch (Exception e) {
-	  			//Error
-	  			System.out.println("ERROR");
-	  		}
-	  		
-	  	} else {
-	  		//Help
-	  		System.out.println("Not a Command");
-	  	}
-	  	
-	  	s.close();
-	  }
+	public static void doThings(Scanner s) throws Exception {
+		String input = s.nextLine();
+		
+		if (input.equals("createTeam")) {
+			System.out.print("Team ID: ");
+			int teamid = s.nextInt();
+			System.out.println();
+
+			TeamController.createTeam(teamid);
+		}
+		
+		if (input.equals("deleteTeam")) {
+			System.out.print("Team ID: ");
+			int teamid = s.nextInt();
+			System.out.println();
+
+			TeamController.deleteTeam(teamid);
+		}
+		
+		if (input.equals("createManager")) {
+			System.out.print("Manager ID: ");
+			int managerid = s.nextInt();
+			System.out.println();
+			
+			System.out.print("Manager Name: ");
+			String name = s.nextLine();
+			System.out.println();
+
+			TeamController.createManager(managerid, name);
+		}
+		
+		if (input.equals("assignManager")) {
+			System.out.print("Team ID: ");
+			int teamid = s.nextInt();
+			System.out.println();
+			
+			System.out.print("Manager ID: ");
+			int managerid = s.nextInt();
+			System.out.println();
+
+			TeamController.assignManager(teamid, managerid);
+		}
+		
+		if (input.equals("unassignManager")) {
+			System.out.print("Team ID: ");
+			int teamid = s.nextInt();
+			System.out.println();
+			
+			System.out.print("Manager ID: ");
+			int managerid = s.nextInt();
+			System.out.println();
+
+			TeamController.unassignManager(teamid, managerid);
+		}
+		
+		if (input.equals("createEmployee")) {
+			System.out.print("Employee ID: ");
+			int employeeid = s.nextInt();
+			System.out.println();
+			
+			System.out.print("Employee Name: ");
+			String name = s.nextLine();
+			System.out.println();
+
+			TeamController.createEmployee(employeeid, name);
+		}
+		
+		if (input.equals("assignEmployee")) {
+			System.out.print("Team ID: ");
+			int teamid = s.nextInt();
+			System.out.println();
+			
+			System.out.print("Employee ID: ");
+			int employeeid = s.nextInt();
+			System.out.println();
+
+			TeamController.assignEmployee(teamid, employeeid);
+		}
+		
+		if (input.equals("unassignEmployee")) {
+			System.out.print("Team ID: ");
+			int teamid = s.nextInt();
+			System.out.println();
+			
+			System.out.print("Employee ID: ");
+			int employeeid = s.nextInt();
+			System.out.println();
+
+			TeamController.unassignEmployee(teamid, employeeid);
+		}
+
+		if (input.equals("listMembersOfTeam")) {
+			System.out.print("Team ID: ");
+			int teamid = s.nextInt();
+			System.out.println();
+
+			TeamController.listMembersOfTeam(teamid);
+		}
+
+		if (input.equals("addContactForEmployee")) {
+			System.out.print("Employee ID: ");
+			int employeeid = s.nextInt();
+			System.out.println();
+			
+			System.out.print("Phone: ");
+			String phone = s.nextLine();
+			System.out.println();
+			
+			System.out.print("Email: ");
+			String email = s.nextLine();
+			System.out.println();
+
+			TeamController.addContactForEmployee(employeeid, phone, email);
+		}
+
+		if (input.equals("updateContactForEmployee")) {
+			System.out.print("Employee ID: ");
+			int employeeid = s.nextInt();
+			System.out.println();
+			
+			System.out.print("Phone: ");
+			String phone = s.nextLine();
+			System.out.println();
+			
+			System.out.print("Email: ");
+			String email = s.nextLine();
+			System.out.println();
+
+			TeamController.addContactForEmployee(employeeid, phone, email);
+		}
+		
+		if (input.equals("createTaskForTeam")) {
+			System.out.print("Team ID: ");
+			int teamid = s.nextInt();
+			System.out.println();
+			
+			System.out.print("Task ID: ");
+			int taskid = s.nextInt();
+			System.out.println();
+			
+			System.out.print("Description: ");
+			String desc = s.nextLine();
+			System.out.println();
+			
+			System.out.print("Dead Line: ");
+			String date = s.nextLine();
+			System.out.println();
+
+			TeamController.createTaskForTeam(teamid, taskid, desc, date);
+		}
+		
+		if (input.equals("assignTaskToEmployee")) {
+			System.out.print("Team ID: ");
+			int teamid = s.nextInt();
+			System.out.println();
+			
+			System.out.print("Task ID: ");
+			int taskid = s.nextInt();
+			System.out.println();
+			
+			System.out.print("Employee ID: ");
+			int employeeid = s.nextInt();
+			System.out.println();
+			
+			TeamController.assignTaskToEmployee(teamid, taskid, employeeid);
+		}
+
+		if (input.equals("endTask")) {
+			System.out.print("Team ID: ");
+			int teamid = s.nextInt();
+			System.out.println();
+			
+			System.out.print("Task ID: ");
+			int taskid = s.nextInt();
+			System.out.println();
+			
+			TeamController.endTask(teamid, taskid);
+		}
+
+		if (input.equals("listTasksOfMember")) {
+			System.out.print("Employee ID: ");
+			int employeeid = s.nextInt();
+			System.out.println();
+			
+			TeamController.listTasksOfMember(employeeid);
+		}
+		
+		if (input.equals("listMembersOnTask")) {
+			System.out.print("Team ID: ");
+			int teamid = s.nextInt();
+			System.out.println();
+			
+			System.out.print("Task ID: ");
+			int taskid = s.nextInt();
+			System.out.println();
+			
+			TeamController.listMembersOnTask(teamid, taskid);
+		}
+
+	}
 }
