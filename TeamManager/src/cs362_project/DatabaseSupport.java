@@ -13,11 +13,12 @@ public class DatabaseSupport {
 	private Statement statement = null;
 	private PreparedStatement preparedStatement = null;
 	private ResultSet resultSet = null;
+	String connectionURL = "jdbc:mysql://localhost/TEAMDB?autoReconnect=true&useSSL=false";
 
 	public void putTeam(Team t) throws Exception {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			connect = DriverManager.getConnection("jdbc:mysql://localhost/TEAMDB?" + "user=test&password=test1");
+			connect = DriverManager.getConnection(connectionURL, "test", "test1");
 
 			preparedStatement = connect
 					.prepareStatement("SELECT COUNT(*) FROM (SELECT * FROM Teams WHERE tid = ?) as f");
@@ -50,7 +51,7 @@ public class DatabaseSupport {
 	public void deleteTeam(int tid) throws Exception {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			connect = DriverManager.getConnection("jdbc:mysql://localhost/TEAMDB?" + "user=test&password=test1");
+			connect = DriverManager.getConnection(connectionURL, "test", "test1");
 
 			preparedStatement = connect.prepareStatement("delete from TEAMDB.Teams where tid= ? ; ");
 			preparedStatement.setInt(1, tid);
@@ -66,7 +67,7 @@ public class DatabaseSupport {
 	public Team getTeam(int tid) throws Exception {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			connect = DriverManager.getConnection("jdbc:mysql://localhost/TEAMDB?" + "user=test&password=test1");
+			connect = DriverManager.getConnection(connectionURL, "test", "test1");
 
 			preparedStatement = connect.prepareStatement("Select * from Teams WHERE tid= ? ;");
 			preparedStatement.setInt(1, tid);
@@ -88,7 +89,7 @@ public class DatabaseSupport {
 	public void putManager(Member m) throws Exception {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			connect = DriverManager.getConnection("jdbc:mysql://localhost/TEAMDB?" + "user=test&password=test1");
+			connect = DriverManager.getConnection(connectionURL, "test", "test1");
 
 			int mid = m.getMID();
 			int tid = m.getTID();
@@ -115,7 +116,7 @@ public class DatabaseSupport {
 	public Member getMember(int mid) throws Exception {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			connect = DriverManager.getConnection("jdbc:mysql://localhost/TEAMDB?" + "user=test&password=test1");
+			connect = DriverManager.getConnection(connectionURL, "test", "test1");
 
 			preparedStatement = connect.prepareStatement("SELECT mid,tid,name FROM TeamMember WHERE mid = ?");
 			preparedStatement.setInt(1, mid);
@@ -139,7 +140,7 @@ public class DatabaseSupport {
 	public ArrayList<Member> getMembers(int tid) throws Exception {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			connect = DriverManager.getConnection("jdbc:mysql://localhost/TEAMDB?" + "user=test&password=test1");
+			connect = DriverManager.getConnection(connectionURL, "test", "test1");
 
 			preparedStatement = connect.prepareStatement("SELECT mid,tid,name FROM TeamMember WHERE tid = ?");
 			preparedStatement.setInt(1, tid);
@@ -166,7 +167,7 @@ public class DatabaseSupport {
 	public void addMember(Member m) throws Exception {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			connect = DriverManager.getConnection("jdbc:mysql://localhost/TEAMDB?" + "user=test&password=test1");
+			connect = DriverManager.getConnection(connectionURL, "test", "test1");
 
 			int mid = m.getMID();
 			int tid = m.getTID();
@@ -188,7 +189,7 @@ public class DatabaseSupport {
 	public void putMemberIntoTeam(Member m) throws Exception {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			connect = DriverManager.getConnection("jdbc:mysql://localhost/TEAMDB?" + "user=test&password=test1");
+			connect = DriverManager.getConnection(connectionURL, "test", "test1");
 
 			int mid = m.getMID();
 			int tid = m.getTID();
@@ -208,7 +209,7 @@ public class DatabaseSupport {
 	public void putMemberContactInfo(Member m) throws Exception {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			connect = DriverManager.getConnection("jdbc:mysql://localhost/TEAMDB?" + "user=test&password=test1");
+			connect = DriverManager.getConnection(connectionURL, "test", "test1");
 
 			int mid = m.getMID();
 			String phone = m.getPhone();
@@ -231,7 +232,7 @@ public class DatabaseSupport {
 	public void removeMember(int mid) throws Exception {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			connect = DriverManager.getConnection("jdbc:mysql://localhost/TEAMDB?" + "user=test&password=test1");
+			connect = DriverManager.getConnection(connectionURL, "test", "test1");
 
 			preparedStatement = connect.prepareStatement("DELETE FROM TEAMDB.TeamMember WHERE mid = ?");
 			preparedStatement.setInt(1, mid);
@@ -247,7 +248,7 @@ public class DatabaseSupport {
 	public void endTask(int taskid)throws Exception{
 		try{
 			Class.forName("com.mysql.jdbc.Driver");
-			connect = DriverManager.getConnection("jdbc:mysql://localhost/TEAMDB?" + "user=test&password=test1");
+			connect = DriverManager.getConnection(connectionURL, "test", "test1");
 			
 			preparedStatement = connect.prepareStatement("UPDATE TEAMDB.TASKS SET completed = ? WHERE taskID = ?");
 			preparedStatement.setInt(1, 1);
@@ -261,10 +262,12 @@ public class DatabaseSupport {
 		
 	}
 	
-	public void assignTask(int taskid, int mid)throws Exception{
+	public void assignTask(int taskid, Member m)throws Exception{
 		try{
 			Class.forName("com.mysql.jdbc.Driver");
-			connect = DriverManager.getConnection("jdbc:mysql://localhost/TEAMDB?" + "user=test&password=test1");
+			connect = DriverManager.getConnection(connectionURL, "test", "test1");
+			
+			int mid = m.getMID();
 			
 			preparedStatement = connect.prepareStatement("UPDATE TEAMDB.TASKS SET mid = ? WHERE taskID = ?");
 			preparedStatement.setInt(1, mid);
@@ -278,10 +281,14 @@ public class DatabaseSupport {
 		
 	}
 	
-	public void createTask(int taskid, String desc, String date)throws Exception{
+	public void createTask(Task ts)throws Exception{
 		try{
 			Class.forName("com.mysql.jdbc.Driver");
-			connect = DriverManager.getConnection("jdbc:mysql://localhost/TEAMDB?" + "user=test&password=test1");
+			connect = DriverManager.getConnection(connectionURL, "test", "test1");
+			
+			int taskid = ts.getTaskid();
+			String desc = ts.getDesc();
+			String date = ts.getDate();
 			
 			preparedStatement = connect.prepareStatement("INSERT INTO TEAMDB.TASKS VALUES(?, ?, ?, ?)");
 			preparedStatement.setInt(1, taskid);

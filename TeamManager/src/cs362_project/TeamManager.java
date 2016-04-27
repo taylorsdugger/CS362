@@ -162,7 +162,12 @@ public class TeamManager {
 
 	public boolean createTaskForTeam(int teamid, int taskid, String desc, String date) {
 		try {
-			// TODO
+			Team t = d.getTeam(teamid);
+			
+			Task ts = new Task(taskid, desc, date);
+			
+			d.createTask(ts);
+			
 		} catch (Exception e) {
 			return false;
 		}
@@ -171,7 +176,12 @@ public class TeamManager {
 
 	public boolean assignTaskToEmployee(int teamid, int taskid, int employeeid) {
 		try {
-			// TODO
+			
+			Member m = d.getMember(employeeid);
+			Team t = d.getTeam(teamid);
+
+			t.assignTask(taskid, m);
+			
 		} catch (Exception e) {
 			return false;
 		}
@@ -180,7 +190,10 @@ public class TeamManager {
 
 	public boolean endTask(int teamid, int taskid) {
 		try {
-			// TODO
+			
+			Team t = d.getTeam(teamid);
+			t.endTask(taskid);
+
 		} catch (Exception e) {
 			return false;
 		}

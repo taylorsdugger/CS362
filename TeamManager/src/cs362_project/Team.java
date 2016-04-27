@@ -42,4 +42,27 @@ public class Team {
 	public void setMID(int MID) {
 		this.MID = MID;
 	}
+
+	public boolean endTask(int taskid) {
+		try {
+			DatabaseSupport d = new DatabaseSupport();
+			d.endTask(taskid);
+			
+		} catch (Exception e) {
+			return false;
+		}
+		return true;
+	}
+
+	public boolean assignTask(int taskid, Member m) {
+		try{
+			DatabaseSupport d = new DatabaseSupport();
+			
+			d.assignTask(taskid, m);
+			
+		}catch (Exception e){
+			return false;
+		}
+		return true;
+	}
 }

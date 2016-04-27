@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class TeamController {
 
-	private static TeamManager tm;
+	private static TeamManager tm = new TeamManager();
 
 	public static boolean createTeam(int teamid) {
 		try {

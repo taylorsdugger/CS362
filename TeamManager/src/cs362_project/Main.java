@@ -44,6 +44,7 @@ public class Main {
 			
 			System.out.print("Manager Name: ");
 			String name = s.nextLine();
+			s.next();
 			System.out.println();
 
 			TeamController.createManager(managerid, name);
