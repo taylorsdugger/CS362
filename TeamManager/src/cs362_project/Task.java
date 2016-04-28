@@ -3,11 +3,12 @@ package cs362_project;
 public class Task {
 
 	private int taskid = -1;
-	private int employeeid = -1;
+	private String employees = "";
 	private String date = "";
 	private String desc = "";
 	private int completed = 0;
-	
+	private int tid = -1;
+
 	public Task(){
 		
 	}
@@ -16,7 +17,15 @@ public class Task {
 		this.taskid = taskid;
 		this.desc = desc;
 		this.date = date;
-		
+	}
+	
+	public Task(int taskid, String desc, String date, String employees, int completed, int tid){
+		this.taskid = taskid;
+		this.desc = desc;
+		this.date = date;
+		this.employees = employees;
+		this.completed = completed;
+		this.tid = tid;
 	}
 	
 	public int getTaskid() {
@@ -27,12 +36,12 @@ public class Task {
 		this.taskid = taskid;
 	}
 
-	public int getEmployeeid() {
-		return employeeid;
+	public String getEmployees() {
+		return employees;
 	}
 
-	public void setEmployeeid(int employeeid) {
-		this.employeeid = employeeid;
+	public void setEmployees(String employees) {
+		this.employees = this.employees + ", " + employees;
 	}
 
 	public String getDate() {
@@ -57,5 +66,13 @@ public class Task {
 
 	public void setCompleted(int completed) {
 		this.completed = completed;
+	}
+	
+	public int getTid() {
+		return tid;
+	}
+
+	public void setTid(int tid) {
+		this.tid = tid;
 	}
 }

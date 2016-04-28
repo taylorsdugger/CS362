@@ -4,7 +4,8 @@ public class Team {
 
 	private int TID;
 	private int MID;
-
+	private DatabaseSupport d = new DatabaseSupport();
+	
 	public Team() {
 		TID = -1;
 		MID = -1;
@@ -45,7 +46,6 @@ public class Team {
 
 	public boolean endTask(int taskid) {
 		try {
-			DatabaseSupport d = new DatabaseSupport();
 			d.endTask(taskid);
 			
 		} catch (Exception e) {
@@ -56,9 +56,8 @@ public class Team {
 
 	public boolean assignTask(int taskid, Member m) {
 		try{
-			DatabaseSupport d = new DatabaseSupport();
 			
-			d.assignTask(taskid, m);
+			d.assignTask(d.getTask(taskid), m);
 			
 		}catch (Exception e){
 			return false;
