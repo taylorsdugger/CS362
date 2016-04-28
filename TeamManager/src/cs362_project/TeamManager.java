@@ -56,6 +56,7 @@ public class TeamManager {
 			t.addManager(managerid);
 
 			d.putTeam(t);
+			d.assignManager(t);
 
 		} catch (Exception e) {
 			return false;
@@ -70,9 +71,10 @@ public class TeamManager {
 			Team t = d.getTeam(teamid);
 
 			t.RemoveManager();
-
+			
 			d.putTeam(t);
-
+			d.unassignManager(managerid);
+			
 		} catch (Exception e) {
 			return false;
 		}
@@ -99,7 +101,8 @@ public class TeamManager {
 		try {
 			Member m = d.getMember(employeeid);
 			Team t = d.getTeam(teamid);
-			d.putMemberIntoTeam(m);
+			
+			d.putMemberIntoTeam(m, t);
 
 		} catch (Exception e) {
 			return false;
@@ -110,10 +113,11 @@ public class TeamManager {
 
 	public boolean unassignEmployee(int teamid, int employeeid) {
 		try {
-			d.removeMember(employeeid);
+			
+			d.unassignMember(employeeid);
+			
 		} catch (Exception e) {
 			return false;
-
 		}
 		return true;
 	}
@@ -121,7 +125,6 @@ public class TeamManager {
 	public ArrayList<Member> listMembersOfTeam(int teamid) {
 		try {
 			return d.getMembers(teamid);
-
 		} catch (Exception e) {
 			return null;
 
@@ -166,7 +169,7 @@ public class TeamManager {
 			
 			Task ts = new Task(taskid, desc, date);
 			
-			d.createTask(ts);
+			d.createTaskForTeam(ts, teamid);
 			
 		} catch (Exception e) {
 			return false;
@@ -200,26 +203,28 @@ public class TeamManager {
 		return true;
 	}
 
-	public ArrayList<Task> listTasksOfMember(int employeeid) {
+	public String listTasksOfMember(int employeeid) {
 		try {
 			Member m = d.getMember(employeeid);
 			//TODO
-			return null;
+			
+			String tasks = new String(m.getTasks());
+			
+			return tasks;
 		} catch (Exception e) {
 			return null;
 		}
 		return null;
 	}
 
-	public ArrayList<Member> listMembersOnTask(int teamid, int taskid) {
+	public String listMembersOnTask(int teamid, int taskid) {
 		try {
-			// TODO
-			Team t = d.getTeam(teamid);
-			Task k = t.getTask(taskid);
-			Member m = k.getEmployeeid();
-			ArrayList<Member> list = new ArrayList();
-			list.add(m);
-			return list;
+			Task t = d.getTask(taskid);
+			
+			String employees = new String(t.getEmployees());
+			//Parse through employees. Should be in 10, 3, 5, 9 format.
+			
+			return employees;
 		} catch (Exception e) {
 			return null;
 		}

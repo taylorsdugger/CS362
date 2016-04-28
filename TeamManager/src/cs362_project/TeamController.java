@@ -141,7 +141,10 @@ public class TeamController {
 			ArrayList<Member> mems = tm.listMembersOfTeam(teamid);
 			if (mems != null) {
 				// Returned True
-				System.out.println(mems);
+				System.out.println("");
+				for(int i = 0; i < mems.size(); i++){
+					System.out.print(mems.get(i).getMID() + ", \n\n");
+				}
 			} else {
 				// Returned False
 				System.out.println("Failure");

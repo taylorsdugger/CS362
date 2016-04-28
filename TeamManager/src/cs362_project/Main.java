@@ -43,8 +43,7 @@ public class Main {
 			System.out.println();
 			
 			System.out.print("Manager Name: ");
-			String name = s.nextLine();
-			s.next();
+			String name = s.next();
 			System.out.println();
 
 			TeamController.createManager(managerid, name);
@@ -80,7 +79,7 @@ public class Main {
 			System.out.println();
 			
 			System.out.print("Employee Name: ");
-			String name = s.nextLine();
+			String name = s.next();
 			System.out.println();
 
 			TeamController.createEmployee(employeeid, name);
@@ -124,11 +123,11 @@ public class Main {
 			System.out.println();
 			
 			System.out.print("Phone: ");
-			String phone = s.nextLine();
+			String phone = s.next();
 			System.out.println();
 			
 			System.out.print("Email: ");
-			String email = s.nextLine();
+			String email = s.next();
 			System.out.println();
 
 			TeamController.addContactForEmployee(employeeid, phone, email);
@@ -160,11 +159,11 @@ public class Main {
 			System.out.println();
 			
 			System.out.print("Description: ");
-			String desc = s.nextLine();
+			String desc = s.next();
 			System.out.println();
 			
-			System.out.print("Dead Line: ");
-			String date = s.nextLine();
+			System.out.print("Deadline: ");
+			String date = s.next();
 			System.out.println();
 
 			TeamController.createTaskForTeam(teamid, taskid, desc, date);
