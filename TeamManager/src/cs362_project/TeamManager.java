@@ -202,7 +202,9 @@ public class TeamManager {
 
 	public ArrayList<Task> listTasksOfMember(int employeeid) {
 		try {
-			// TODO
+			Member m = d.getMember(employeeid);
+			//TODO
+			return null;
 		} catch (Exception e) {
 			return null;
 		}
@@ -212,6 +214,12 @@ public class TeamManager {
 	public ArrayList<Member> listMembersOnTask(int teamid, int taskid) {
 		try {
 			// TODO
+			Team t = d.getTeam(teamid);
+			Task k = t.getTask(taskid);
+			Member m = k.getEmployeeid();
+			ArrayList<Member> list = new ArrayList();
+			list.add(m);
+			return list;
 		} catch (Exception e) {
 			return null;
 		}
