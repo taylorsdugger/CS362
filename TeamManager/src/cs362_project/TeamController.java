@@ -238,7 +238,7 @@ public class TeamController {
 
 	public static boolean listTasksOfMember(int employeeid) {
 		try {
-			ArrayList<Task> tasks = tm.listTasksOfMember(employeeid);
+			String tasks = tm.listTasksOfMember(employeeid);
 			if (tasks != null) {
 				// Returned True
 				System.out.println(tasks);
@@ -255,7 +255,7 @@ public class TeamController {
 
 	public static boolean listMembersOnTask(int teamid, int taskid) {
 		try {
-			ArrayList<Member> mems = tm.listMembersOnTask(teamid, taskid);
+			String mems = tm.listMembersOnTask(teamid, taskid);
 			if (mems != null) {
 				// Returned True
 				System.out.println(mems);
