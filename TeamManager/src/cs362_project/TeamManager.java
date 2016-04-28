@@ -206,7 +206,6 @@ public class TeamManager {
 	public String listTasksOfMember(int employeeid) {
 		try {
 			Member m = d.getMember(employeeid);
-			//TODO
 			
 			String tasks = (m.getTasks());
 			

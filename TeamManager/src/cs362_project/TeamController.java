@@ -143,8 +143,9 @@ public class TeamController {
 				// Returned True
 				System.out.println("");
 				for(int i = 0; i < mems.size(); i++){
-					System.out.print(mems.get(i).getMID() + ", \n\n");
+					System.out.print(mems.get(i).getMID() + ", ");
 				}
+				System.out.println("");
 			} else {
 				// Returned False
 				System.out.println("Failure");

@@ -57,6 +57,7 @@ public class Team {
 	public boolean assignTask(int taskid, Member m) {
 		try{
 			
+			m.assignTask(taskid);
 			d.assignTask(d.getTask(taskid), m);
 			
 		}catch (Exception e){

@@ -18,12 +18,13 @@ public class Member {
 		this.name = name;
 	}
 	
-	public Member(int MID, int TID, String name, String phone, String email){
+	public Member(int MID, int TID, String name, String phone, String email, String tasks){
 		this.MID = MID;
 		this.TID = TID;
 		this.name = name;
 		this.phone = phone;
 		this.email = email;
+		this.tasks = tasks;
 	}
 	
 	public void setTID(int TID){
@@ -64,6 +65,6 @@ public class Member {
 	}
 	
 	public void assignTask(int taskid) {
-		this.tasks += " " + taskid;
+		this.tasks += ", " + taskid;
 	}
 }

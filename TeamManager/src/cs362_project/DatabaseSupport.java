@@ -94,7 +94,7 @@ public class DatabaseSupport {
 			int tid = m.getTID();
 			String name = m.getName();
 
-			preparedStatement = connect.prepareStatement("insert into  TEAMDB.TeamMember values (?, -1, ?, null, null)");
+			preparedStatement = connect.prepareStatement("insert into  TEAMDB.TeamMember values (?, -1, ?, null, null, null)");
 			preparedStatement.setInt(1, mid);
 			preparedStatement.setString(2, name);
 			preparedStatement.executeUpdate();
@@ -156,7 +156,7 @@ public class DatabaseSupport {
 			Class.forName("com.mysql.jdbc.Driver");
 			connect = DriverManager.getConnection(connectionURL, "test", "test1");
 
-			preparedStatement = connect.prepareStatement("SELECT mid,tid,name FROM TeamMember WHERE mid = ?");
+			preparedStatement = connect.prepareStatement("SELECT * FROM TeamMember WHERE mid = ?");
 			preparedStatement.setInt(1, mid);
 			resultSet = preparedStatement.executeQuery();
 
@@ -164,8 +164,11 @@ public class DatabaseSupport {
 			int mid2 = resultSet.getInt("mid");
 			int tid2 = resultSet.getInt("tid");
 			String name = resultSet.getString("name");
+			String phone = resultSet.getString("phone");
+			String email = resultSet.getString("email");
+			String tasks = resultSet.getString("tasks");
 
-			Member m = new Member(mid2, tid2, name);
+			Member m = new Member(mid2, tid2, name, phone, email, tasks);
 
 			return m;
 		} catch (Exception e) {
@@ -181,7 +184,7 @@ public class DatabaseSupport {
 			Class.forName("com.mysql.jdbc.Driver");
 			connect = DriverManager.getConnection(connectionURL, "test", "test1");
 
-			preparedStatement = connect.prepareStatement("SELECT mid,tid,name FROM TeamMember WHERE tid = ?");
+			preparedStatement = connect.prepareStatement("SELECT * FROM TeamMember WHERE tid = ?");
 			preparedStatement.setInt(1, tid);
 			resultSet = preparedStatement.executeQuery();
 
@@ -191,8 +194,11 @@ public class DatabaseSupport {
 				int mid2 = resultSet.getInt("mid");
 				int tid2 = resultSet.getInt("tid");
 				String name = resultSet.getString("name");
+				String phone = resultSet.getString("phone");
+				String email = resultSet.getString("email");
+				String tasks = resultSet.getString("tasks");
 
-				m.add(new Member(mid2, tid2, name));
+				m.add(new Member(mid2, tid2, name, phone, email, tasks));
 			}
 
 			return m;
@@ -213,7 +219,7 @@ public class DatabaseSupport {
 			int tid = m.getTID();
 			String name = m.getName();
 
-			preparedStatement = connect.prepareStatement("INSERT INTO TEAMDB.TeamMember VALUES(?, -1, ?, null, null)");
+			preparedStatement = connect.prepareStatement("INSERT INTO TEAMDB.TeamMember VALUES(?, -1, ?, null, null, null)");
 			preparedStatement.setInt(1, mid);
 			preparedStatement.setString(2, name);
 			preparedStatement.executeUpdate();
@@ -336,6 +342,13 @@ public class DatabaseSupport {
 			preparedStatement = connect.prepareStatement("UPDATE TEAMDB.TASKS SET mid = ? WHERE taskID = ?");
 			preparedStatement.setString(1, employees);
 			preparedStatement.setInt(2, t.getTaskid());
+			preparedStatement.executeUpdate();
+			
+			String tasks = m.getTasks();
+			
+			preparedStatement = connect.prepareStatement("UPDATE TEAMDB.TeamMember SET tasks = ? WHERE mid = ?");
+			preparedStatement.setString(1, tasks);
+			preparedStatement.setInt(2, m.getMID());
 			preparedStatement.executeUpdate();
 			
 		}catch (Exception e){
