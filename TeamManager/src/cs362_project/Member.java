@@ -63,7 +63,7 @@ public class Member {
 		return this.tasks;
 	}
 	
-	public boolean assignTask(String taskid) {
-		this.tasks += taskid;
+	public boolean assignTask(int taskid) {
+		this.tasks += " " + taskid;
 	}
 }
