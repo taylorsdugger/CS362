@@ -208,7 +208,7 @@ public class TeamManager {
 			Member m = d.getMember(employeeid);
 			//TODO
 			
-			String tasks = new String(m.getTasks());
+			String tasks = (m.getTasks());
 			
 			return tasks;
 		} catch (Exception e) {
@@ -221,7 +221,7 @@ public class TeamManager {
 		try {
 			Task t = d.getTask(taskid);
 			
-			String employees = new String(t.getEmployees());
+			String employees = (t.getEmployees());
 			//Parse through employees. Should be in 10, 3, 5, 9 format.
 			
 			return employees;
