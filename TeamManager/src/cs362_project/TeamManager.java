@@ -214,7 +214,6 @@ public class TeamManager {
 		} catch (Exception e) {
 			return null;
 		}
-		return null;
 	}
 
 	public String listMembersOnTask(int teamid, int taskid) {
@@ -228,6 +227,5 @@ public class TeamManager {
 		} catch (Exception e) {
 			return null;
 		}
-		return null;
 	}
 }

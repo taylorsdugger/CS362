@@ -59,11 +59,11 @@ public class Member {
 		this.email = email;
 	}
 	
-	public void getTasks() {
+	public String getTasks() {
 		return this.tasks;
 	}
 	
-	public boolean assignTask(int taskid) {
+	public void assignTask(int taskid) {
 		this.tasks += " " + taskid;
 	}
 }

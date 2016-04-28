@@ -162,7 +162,7 @@ public class Main {
 			String desc = s.next();
 			System.out.println();
 			
-			System.out.print("Deadline: ");
+			System.out.print("Deadlline: ");
 			String date = s.next();
 			System.out.println();
 
